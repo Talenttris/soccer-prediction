@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soccer Prediction</title>
+</head>
+<body>
+    <h1>Soccer Prediction AI</h1>
+    <form id="predictionForm">
+        <label for="home_team_avg_goals">Home Team Avg Goals:</label>
+        <input type="number" step="0.1" id="home_team_avg_goals" required><br><br>
+        <label for="away_team_avg_goals">Away Team Avg Goals:</label>
+        <input type="number" step="0.1" id="away_team_avg_goals" required><br><br>
+        <label for="home_team_win_rate">Home Team Win Rate:</label>
+        <input type="number" step="0.1" id="home_team_win_rate" required><br><br>
+        <label for="away_team_win_rate">Away Team Win Rate:</label>
+        <input type="number" step="0.1" id="away_team_win_rate" required><br><br>
+        <button type="submit">Predict</button>
+    </form>
+    <h2 id="result"></h2>
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = {
+                home_team_avg_goals: parseFloat(document.getElementById("home_team_avg_goals").value),
+                away_team_avg_goals: parseFloat(document.getElementById("away_team_avg_goals").value),
+                home_team_win_rate: parseFloat(document.getElementById("home_team_win_rate").value),
+                away_team_win_rate: parseFloat(document.getElementById("away_team_win_rate").value)
+            };
+            const response = await fetch("/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            document.getElementById("result").innerText = `Prediction: ${result.prediction}`;
+        });
+    </script>
+</body>
+</html>
