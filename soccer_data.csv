@@ -1,0 +1,6 @@
+home_team_avg_goals,away_team_avg_goals,home_team_win_rate,away_team_win_rate,outcome
+1.5,1.2,0.6,0.4,1
+1.8,1.1,0.7,0.3,1
+1.0,1.5,0.4,0.6,-1
+1.2,1.2,0.5,0.5,0
+1.7,1.0,0.65,0.35,1
